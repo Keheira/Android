@@ -98,7 +98,12 @@ public class ThemeUtils {
         OCCapability capability = getCapability(account, context);
 
         try {
-            return Color.parseColor(capability.getServerColor());
+            int color = Color.parseColor(capability.getServerColor());
+            if (Color.WHITE == color) {
+                return Color.LTGRAY;
+            } else {
+                return color;
+            }
         } catch (Exception e) {
             return context.getResources().getColor(R.color.primary);
         }
